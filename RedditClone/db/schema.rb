@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_234539) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_15_040010) do
+  create_table "subs", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.integer "moderator_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderator_id"], name: "index_subs_on_moderator_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "session_token", null: false
@@ -21,4 +30,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_234539) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "subs", "users", column: "moderator_id"
 end
