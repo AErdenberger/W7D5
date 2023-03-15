@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :require_logged_in, only:[:show, :index]
 
     def index
-        @user = User.all 
+        @users = User.all 
     end
 
     def new
